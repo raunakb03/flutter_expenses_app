@@ -23,9 +23,9 @@ class ExpenseItem extends StatelessWidget {
                 const Spacer(), // takes all the space it can take
                 Row(
                   children: [
-                    const Icon(Icons.alarm),
+                    Icon(categoryItems[expense.category]),
                     const SizedBox(width: 8),
-                    Text(expense.date.toString()),
+                    Text(expense.formattedDate),
                   ],
                 )
               ],

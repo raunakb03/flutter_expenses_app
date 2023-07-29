@@ -23,11 +23,11 @@ class _Expenses extends State<Expenses> {
       title: 'Cinema',
       amount: 15.99,
       date: DateTime.now(),
-      category: Category.leasure,
+      category: Category.leisure,
     ),
   ];
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return Scaffold(
       body: Column(
         children: [
