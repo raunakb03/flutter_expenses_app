@@ -26,12 +26,31 @@ class _Expenses extends State<Expenses> {
       category: Category.leisure,
     ),
   ];
+
+// show overlay on clicking plus button
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return Text('Modal bottom sheet');
+        });
+  }
+
   @override
   Widget build(context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Expense Tracker'),
+        actions: [
+          IconButton(
+            onPressed: _openAddExpenseOverlay,
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
       body: Column(
         children: [
-          const Text("this is the top bar"),
+          const Text("The chart"),
           Expanded(child: ExpensesList(expenses: _registeredExpenses)),
         ],
       ),
