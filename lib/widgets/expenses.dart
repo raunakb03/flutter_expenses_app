@@ -33,8 +33,14 @@ class _Expenses extends State<Expenses> {
     showModalBottomSheet(
         context: context,
         builder: (ctx) {
-          return const NewExpense();
+          return NewExpense(onAddExpense: _addExpense);
         });
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
   }
 
   @override
@@ -52,7 +58,9 @@ class _Expenses extends State<Expenses> {
       body: Column(
         children: [
           const Text("The chart"),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+          Expanded(
+            child: ExpensesList(expenses: _registeredExpenses),
+          ),
         ],
       ),
     );
