@@ -13,6 +13,7 @@ class _NewExpense extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
+  Category _selectedCategory = Category.leisure;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -50,6 +51,8 @@ class _NewExpense extends State<NewExpense> {
               label: Text('Title'),
             ),
           ),
+
+          // row to show the amount and date picker input section
           Row(
             children: [
               Expanded(
@@ -64,6 +67,7 @@ class _NewExpense extends State<NewExpense> {
               ),
               const SizedBox(width: 16),
               Expanded(
+                // row to show selected date and date picker
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,8 +88,30 @@ class _NewExpense extends State<NewExpense> {
               )
             ],
           ),
+          const SizedBox(height: 16),
+          // row to show the buttons
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(
+                          category.name.toUpperCase(),
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    if (value == null) return;
+                    _selectedCategory = value;
+                  });
+                },
+              ),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   // removes overlay from the screen
