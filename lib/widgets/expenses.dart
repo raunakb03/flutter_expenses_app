@@ -31,6 +31,7 @@ class _Expenses extends State<Expenses> {
 // show overlay on clicking plus button
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: context,
         builder: (ctx) {
           return NewExpense(onAddExpense: _addExpense);
@@ -44,7 +45,7 @@ class _Expenses extends State<Expenses> {
   }
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Expense Tracker'),
